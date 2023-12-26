@@ -1,5 +1,161 @@
-.highlight {
-  background-color: yellow;
-  /* padding: 10px 5px; 
-   */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap");
+
+body {
+  /* font-family: "Outfit", "sans-serif"; */
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: #0d192c;
+}
+
+.card {
+  font-family: "Outfit", "sans-serif";
+  width: 350px;
+  height: 596px;
+  padding: 24px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background-color: #15263f;
+  box-shadow: 0px 25px 50px 0px rgba(0, 0, 0, 0.1);
+}
+
+.main-img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.heading {
+  color: var(--White, #fff);
+  font-feature-settings: "clig" off, "liga" off;
+  width: 302px;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 24px;
+}
+.heading:hover {
+  color: var(--Cyan, #00fff8);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.description {
+  color: var(--Soft-Blue, #8bacd9);
+  font-feature-settings: "clig" off, "liga" off;
+  width: 302px;
+  margin-top: 16px;
+
+  /* Body */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 26px; /* 144.444% */
+}
+
+.card-detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-detail div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.ethereum span {
+  color: var(--Cyan, #00fff8);
+  font-feature-settings: "clig" off, "liga" off;
+
+  /* Caption (Bold) */
+  font-family: Outfit;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.ethereum img:hover {
+  transition: 0.7s;
+  transform: rotate(360deg);
+}
+.clock span {
+  color: var(--Soft-Blue, #8bacd9);
+  font-feature-settings: "clig" off, "liga" off;
+
+  /* Caption */
+  font-family: Outfit;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+hr {
+  margin-top: 24px;
+  width: 302px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--very-dark-blue-line, #2e405a);
+  border: none;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.author-info img {
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--White, #fff);
+  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+}
+
+.author-info p {
+  font-feature-settings: "clig" off, "liga" off;
+  color: var(--Soft-Blue, #8bacd9);
+
+  /* Caption */
+  font-family: Outfit;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.author-info p span {
+  color: #fff;
+}
+
+.author-info p span:hover {
+  color: var(--Cyan, #00fff8);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.overlay {
+  width: 302px;
+  height: 302px;
+  position: relative;
+}
+
+.overlay:hover::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 255, 248, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(./nft-preview-card-component/images/icon-view.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 8px;
 }

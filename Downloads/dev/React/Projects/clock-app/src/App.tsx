@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { GlobalStyles } from "./styles/GlobalStyles";
+import { createContext } from "react";
+
+const userContext = createContext({});
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -73,7 +76,11 @@ function App() {
     getUserApi();
   }, []);
 
-  return <GlobalStyles></GlobalStyles>;
+  return (
+    <userContext.Provider value={userData}>
+      <GlobalStyles />
+    </userContext.Provider>
+  );
 }
 
 export default App;

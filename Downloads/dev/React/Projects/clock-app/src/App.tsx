@@ -25,12 +25,24 @@ function App() {
     const weekNumber = timeData.week_number;
     const userIp = timeData.client_ip;
 
+    function findTimeOfDay() {
+      const convertedTime = parseInt(currentTime);
+      if (convertedTime > 5 && convertedTime < 12) {
+        return "morning";
+      } else if (convertedTime > 12 && convertedTime < 18) {
+        return "afternoong";
+      } else {
+        return "evening";
+      }
+    }
+
+    const timeOfDay = findTimeOfDay();
+
     //country data
     const countryResponse = await fetch(
       `https://api.ipbase.com/v2/info?apikey=ipb_live_RuJUq8aElXhV36LrxSpqdL6ITyQRCsilClMc3XuH&ip=${userIp}`
     );
     const countryData = await countryResponse.json();
-
     const timeZoneCode = countryData.data.timezone.code;
     const countryName = countryData.data.location.country.name;
     const cityName = countryData.data.location.city.name;
@@ -42,6 +54,7 @@ function App() {
       currentDayOfYear,
       currentDayOfWeek,
       weekNumber,
+      timeOfDay,
       timeZoneCode,
       countryName,
       cityName,

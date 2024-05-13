@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { createContext } from "react";
+import MainView from "./components/MainView";
 
-const userContext = createContext({});
+export const userContext = createContext({});
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -56,6 +56,7 @@ function App() {
     const quoteResponse = await fetch("https://api.quotable.io/random");
     const quoteData = await quoteResponse.json();
     const randomQuote = quoteData.content;
+    const quoteAuthor = quoteData.author;
 
     setUserData({
       currentTime,
@@ -69,6 +70,7 @@ function App() {
       cityName,
       countryAbbreviation,
       randomQuote,
+      quoteAuthor,
     });
   }
 
@@ -79,6 +81,7 @@ function App() {
   return (
     <userContext.Provider value={userData}>
       <GlobalStyles />
+      <MainView />
     </userContext.Provider>
   );
 }

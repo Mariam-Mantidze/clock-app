@@ -3,19 +3,57 @@ import styled from "styled-components";
 import { GlobalStyles } from "./styles/GlobalStyles";
 
 function App() {
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({});
+
+  function formatTime(isoString) {
+    const date = new Date(isoString);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+
+    return `${hours}:${minutes}`;
+  }
 
   async function getUserApi() {
-    const response = await fetch(
-      "https://api.ipbase.com/v2/info?apikey=ipb_live_RuJUq8aElXhV36LrxSpqdL6ITyQRCsilClMc3XuH&ip=1.1.1.1"
+    //time data
+    const timeResponse = await fetch("http://worldtimeapi.org/api/ip");
+    const timeData = await timeResponse.json();
+
+    const currentTime = formatTime(timeData.datetime);
+    const currentTimeZone = timeData.timezone;
+    const currentDayOfYear = timeData.day_of_year;
+    const currentDayOfWeek = timeData.day_of_week;
+    const weekNumber = timeData.week_number;
+    const userIp = timeData.client_ip;
+
+    //country data
+    const countryResponse = await fetch(
+      `https://api.ipbase.com/v2/info?apikey=ipb_live_RuJUq8aElXhV36LrxSpqdL6ITyQRCsilClMc3XuH&ip=${userIp}`
     );
-    const data = await response.json();
-    console.log(data);
+    const countryData = await countryResponse.json();
+
+    const timeZoneCode = countryData.data.timezone.code;
+    const countryName = countryData.data.location.country.name;
+    const cityName = countryData.data.location.city.name;
+    const countryAbbreviation = countryData.data.location.country.ioc;
+
+    setUserData({
+      currentTime,
+      currentTimeZone,
+      currentDayOfYear,
+      currentDayOfWeek,
+      weekNumber,
+      timeZoneCode,
+      countryName,
+      cityName,
+      countryAbbreviation,
+    });
   }
 
   useEffect(() => {
     getUserApi();
   }, []);
+
+  console.log(userData);
 
   return <GlobalStyles></GlobalStyles>;
 }

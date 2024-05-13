@@ -48,6 +48,12 @@ function App() {
     const cityName = countryData.data.location.city.name;
     const countryAbbreviation = countryData.data.location.country.ioc;
 
+    // quote data
+
+    const quoteResponse = await fetch("https://api.quotable.io/random");
+    const quoteData = await quoteResponse.json();
+    const randomQuote = quoteData.content;
+
     setUserData({
       currentTime,
       currentTimeZone,
@@ -59,14 +65,13 @@ function App() {
       countryName,
       cityName,
       countryAbbreviation,
+      randomQuote,
     });
   }
 
   useEffect(() => {
     getUserApi();
   }, []);
-
-  console.log(userData);
 
   return <GlobalStyles></GlobalStyles>;
 }
